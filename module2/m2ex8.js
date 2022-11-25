@@ -23,4 +23,4 @@ function concat(my_array){
 //create variable result which calls function concat with my_array as a parameter
 let result = concat(my_array);
 //print to html
-document.querySelector('#reversed_array').outerHTML= result;
+document.querySelector('#reversed_array').innerHTML= result;

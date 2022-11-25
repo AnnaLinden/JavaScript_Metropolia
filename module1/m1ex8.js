@@ -43,11 +43,6 @@ document.querySelector('#intro_to_leap').outerHTML='The leap years in ' +
 years.forEach((item)=>{
   //each iteration creates a li element
   let li = document.createElement("li");
-<<<<<<< HEAD
-  //each iteration pyts the innerText value same as the current item (year)
-=======
-  //each iteration puts the innerText value same as the current item (year)
->>>>>>> cdbe634 (Module 2 added)
   li.innerText = item;
   //append li
   leap_years.appendChild(li);
