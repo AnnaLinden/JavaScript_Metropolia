@@ -57,16 +57,15 @@ function appendData(tvseries) {
             h3.setAttribute('class', 'h3');
             const genre = document.createElement('p');
             genre.setAttribute('class', 'margin');
-            const p2 = document.createElement('p');
-            const p3 = document.createElement('p');
+            const summary = document.createElement('p');
+            const rating = document.createElement('p');
             const img = document.createElement('img');
-            const p4 = document.createElement('p');
-            p4.setAttribute('class', 'links');
-            const p5 = document.createElement('p');
-            p5.setAttribute('class', 'premiere');
-            p2.setAttribute('class', 'synopsis');
-            p3.setAttribute('class', 'rating');
-            const anuoli = document.createElement("a");
+            const link = document.createElement('p');
+            link.setAttribute('class', 'links');
+            const premier = document.createElement('p');
+            premier.setAttribute('class', 'premiere');
+            summary.setAttribute('class', 'synopsis');
+            rating.setAttribute('class', 'rating');
             const a1 = document.createElement('a');
             const officialsites = document.createElement("p");
             div.innerHTML = '';
@@ -104,27 +103,27 @@ function appendData(tvseries) {
             div.appendChild(genre);
 
             if (`${tvseries[i].show.premiered}` == 'null') {
-                p5.innerHTML = '';
-                div.appendChild(p5);
+                premier.innerHTML = '';
+                div.appendChild(premier);
             } else {
-                p5.innerHTML = `${tvseries[i].show.premiered}`;
-                div.appendChild(p5);
+                premier.innerHTML = `${tvseries[i].show.premiered}`;
+                div.appendChild(premier);
             }
 
             if (`${tvseries[i].show.summary}` == 'null') {
-                p2.innerHTML = '';
-                div.appendChild(p2);
+                summary.innerHTML = '';
+                div.appendChild(summary);
             } else {
-                p2.innerHTML += `${tvseries[i].show.summary}`;
-                div.appendChild(p2);
+                summary.innerHTML += `${tvseries[i].show.summary}`;
+                div.appendChild(summary);
             }
 
             if (`${tvseries[i].show.rating.average}` == 'null') {
-                p3.innerHTML = '';
-                div.append(p3);
+                rating.innerHTML = '';
+                div.append(rating);
             } else {
-                p3.innerHTML = `${tvseries[i].show.rating.average} ★`;
-                div.append(p3);
+                rating.innerHTML = `${tvseries[i].show.rating.average} ★`;
+                div.append(rating);
             }
 
             if (`${tvseries[i].show.officialSite}` == "null") {
@@ -143,11 +142,30 @@ function appendData(tvseries) {
             }
 
             if (`${tvseries[i].show.url}` == 'null') {
-                p4.innerHTML = '';
-                div.appendChild(p4);
+                link.innerHTML = '';
+                div.appendChild(link);
             } else {
-                p4.innerHTML = `<a class="links" href="${tvseries[i].show.url}" title="More information can be found on TVmaze">More information</a>`;
-                div.appendChild(p4);
+                link.innerHTML = `<a class="links" href="${tvseries[i].show.url}" title="More information can be found on TVmaze">Click to get more information</a>`;
+
+                const dialog = document.createElement('DIALOG');
+                dialog.setAttribute('class', 'myDialog');
+                const closeButton = document.createElement('button');
+                closeButton.innerText = 'close';
+                const iframe = document.createElement("IFRAME");
+                iframe.setAttribute('src', `${tvseries[i].show.url}`);
+                dialog.appendChild(closeButton);
+                dialog.appendChild(iframe);
+                link.onmouseover = function() {openDialog()};
+                closeButton.onclick = function() {closeDialog()};
+
+                function openDialog(){
+                    dialog.show();
+                }
+                function closeDialog(){
+                    dialog.close();
+                }
+                div.appendChild(link);
+                div.appendChild(dialog);
             }
 
             search_field.value = '';// empties the search field

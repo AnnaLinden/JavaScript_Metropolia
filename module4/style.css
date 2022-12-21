@@ -191,6 +191,10 @@ body {
     margin: -15px 0 10px 0;
     color: #131313;
 }
+.myDialog{
+    bottom: 20%;
+    border: solid navy;
+}
 
 
 
